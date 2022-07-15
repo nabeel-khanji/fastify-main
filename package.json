@@ -1,0 +1,38 @@
+{
+  "name": "second-world",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node esbuild.js",
+    "watch": "concurrently \"NODE_OPTIONS=--enable-source-maps nodemon dist/Server.js \" \"NODE_OPTIONS=--enable-source-maps nodemon dist/Microservice.js \" \"npm run build\"",
+    "keys": "mkdir -p keys && openssl genrsa -out keys/private.pem 2048 && openssl rsa -in keys/private.pem -pubout -out keys/public.pem",
+    "artisan": "esbuild artisan.ts --sourcemap --bundle --platform=node --format=esm --outdir=dist --external:./node_modules/* && node dist/artisan.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^18.0.1",
+    "@types/nodemailer": "^6.4.4",
+    "concurrently": "^7.2.2",
+    "esbuild": "^0.14.48",
+    "nodemon": "^2.0.18",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "ajv": "^8.11.0",
+    "ajv-formats": "^2.1.1",
+    "argon2": "^0.28.7",
+    "dotenv": "^16.0.1",
+    "fastify": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.2",
+    "ms": "^2.1.3",
+    "nodemailer": "^6.7.6",
+    "piscina": "^3.2.0"
+  }
+}
